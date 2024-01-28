@@ -9,7 +9,7 @@ export const Dish = ({ dish }: { dish: TDish }) => {
                 {dish.name} <b>{dish.price}$</b>
             </span>
             <span>Ingredients: {dish.ingredients.join(', ')}</span>
-            <Counter minValue={0} maxValue={5} />
+            <Counter key={dish.id} minValue={0} maxValue={5} />
         </div>
     );
 };

@@ -7,7 +7,7 @@ export const Button = ({
     disabled
 }: {
     children: ReactNode;
-    onClick: MouseEventHandler<HTMLButtonElement>;
+    onClick?: MouseEventHandler<HTMLButtonElement>;
     disabled?: boolean;
 }) => {
     return (
