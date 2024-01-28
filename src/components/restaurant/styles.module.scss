@@ -1,0 +1,10 @@
+.restaurant {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 1rem;
+    margin: 0 1rem;
+
+    &:not(:last-of-type) {
+        margin-bottom: 1rem;
+    }
+}
