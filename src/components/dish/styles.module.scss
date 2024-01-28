@@ -4,4 +4,8 @@
     flex-direction: column;
     width: fit-content;
     padding: 0.25rem;
+
+    >:last-child {
+        margin-top: 0.5rem;
+    }
 }

@@ -1,5 +1,6 @@
 import { Dish as TDish } from '@models';
 import styles from './styles.module.scss';
+import { Counter } from '../counter/component';
 
 export const Dish = ({ dish }: { dish: TDish }) => {
     return (
@@ -8,6 +9,7 @@ export const Dish = ({ dish }: { dish: TDish }) => {
                 {dish.name} <b>{dish.price}$</b>
             </span>
             <span>Ingredients: {dish.ingredients.join(', ')}</span>
+            <Counter minValue={0} maxValue={5} />
         </div>
     );
 };
