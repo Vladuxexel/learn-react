@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 export const Header = ({ title }: { title: string }) => {
     return (
@@ -6,4 +6,4 @@ export const Header = ({ title }: { title: string }) => {
             <h1 className={styles.header__title}>{title}</h1>
         </header>
     );
-}
+};

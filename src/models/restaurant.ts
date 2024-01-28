@@ -1,4 +1,4 @@
-import { MenuItem, Review } from ".";
+import { MenuItem, Review } from '.';
 
 export interface Restaurant {
     id: string;

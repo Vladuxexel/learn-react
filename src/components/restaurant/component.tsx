@@ -1,7 +1,7 @@
-import { Restaurant as TRestaurant } from "@models";
-import styles from "./styles.module.scss"
-import { Menu } from "../menu/component";
-import { Rating } from "../rating/component";
+import { Restaurant as TRestaurant } from '@models';
+import styles from './styles.module.scss';
+import { Menu } from '../menu/component';
+import { Rating } from '../rating/component';
 
 export const Restaurant = ({ restaurant }: { restaurant: TRestaurant }) => {
     return (
@@ -11,4 +11,4 @@ export const Restaurant = ({ restaurant }: { restaurant: TRestaurant }) => {
             <Rating reviews={restaurant.reviews} />
         </div>
     );
-}
+};

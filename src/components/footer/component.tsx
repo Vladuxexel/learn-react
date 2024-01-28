@@ -1,4 +1,4 @@
-import styles from "./styles.module.scss";
+import styles from './styles.module.scss';
 
 export const Footer = () => {
     return (
@@ -6,4 +6,4 @@ export const Footer = () => {
             <span className={styles.footer__text}>Footer</span>
         </footer>
     );
-}
+};
