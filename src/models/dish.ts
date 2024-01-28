@@ -1,4 +1,4 @@
-export interface MenuItem {
+export interface Dish {
     id: string;
     name: string;
     price: number;
