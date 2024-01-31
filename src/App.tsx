@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Layout } from './components/layout/component';
-import { Restaurant } from './components/restaurant/component';
 import { restaurants as data } from './constants/mock';
 import { Filter } from './components/filters/component';
+import { Restaurant as TRestaurant } from '@models';
+import { RestaurantsContainer } from './components/restaurants-container/component';
+import styles from './styles/app.styles.module.scss';
 
 export const App = () => {
-    const [restaurants, setRestaurants] = useState(data);
+    const [restaurant, setRestaurant] = useState<TRestaurant | undefined>();
 
     return (
         <Layout>
@@ -14,13 +16,12 @@ export const App = () => {
                 displayKey="name"
                 selectKey="id"
                 onSelected={(id) => {
-                    const selectedItems = id ? data.filter((restaurant) => restaurant.id === id) : data;
-                    setRestaurants(selectedItems);
+                    const selectedItem = data.find((restaurant) => restaurant.id === id);
+                    setRestaurant(selectedItem);
                 }}
+                className={styles['restaurants-filter']}
             />
-            {restaurants.map((restaurant) => (
-                <Restaurant restaurant={restaurant} />
-            ))}
+            <RestaurantsContainer content={restaurant ?? data} className={styles['restaurants-container']} />
         </Layout>
     );
 };
