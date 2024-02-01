@@ -1,15 +1,16 @@
-import { MenuItem as TMenuItem } from '@models';
-import { MenuItem } from '../menu-item/component';
+import { Dish as TDish } from '@models';
+import { Dish } from '../dish/component';
 import styles from './styles.module.scss';
+import classNames from 'classnames';
 
-export const Menu = ({ menu }: { menu: TMenuItem[] }) => {
+export const Menu = ({ menu, className }: { menu: TDish[]; className: string }) => {
     return (
-        <div className={styles.menu}>
+        <div className={classNames(styles.menu, className)}>
             <h3>Menu:</h3>
-            <ul>
-                {menu.map((menuItem) => (
+            <ul className={styles['menu-items']}>
+                {menu.map((dish) => (
                     <li>
-                        <MenuItem menuItem={menuItem} />
+                        <Dish dish={dish} />
                     </li>
                 ))}
             </ul>

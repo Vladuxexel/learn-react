@@ -1,6 +1,8 @@
 .rating {
-    ul li {
-        &:not(:last-of-type) {
+    ul {
+        margin-top: 0.5rem;
+
+        li:not(:last-of-type) {
             margin-bottom: 0.5rem;
         }
     }

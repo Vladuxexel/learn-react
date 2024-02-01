@@ -1,8 +1,8 @@
-import { MenuItem, Review } from '.';
+import { Dish, Review } from '.';
 
 export interface Restaurant {
     id: string;
     name: string;
-    menu: MenuItem[];
+    menu: Dish[];
     reviews: Review[];
 }
