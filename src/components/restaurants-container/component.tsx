@@ -12,9 +12,11 @@ export const RestaurantsContainer = ({
     return (
         <div className={className}>
             {Array.isArray(content) ? (
-                content.map((item) => <Restaurant restaurant={item} className={styles['restaurant-item']} />)
+                content.map((item) => (
+                    <Restaurant key={item.id} restaurant={item} className={styles['restaurant-item']} />
+                ))
             ) : (
-                <Restaurant restaurant={content} className={styles['restaurant-item']} />
+                <Restaurant key={content.id} restaurant={content} className={styles['restaurant-item']} />
             )}
         </div>
     );
