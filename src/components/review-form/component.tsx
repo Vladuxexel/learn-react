@@ -1,7 +1,8 @@
-import { useReducer } from 'react';
+import { useContext, useReducer } from 'react';
 import { Button } from '../button/component';
 import styles from './styles.module.scss';
 import { Action, ReviewFormData } from '@models';
+import { UserContext } from '../../contexts/user-context';
 
 const INITIAL_VALUE: ReviewFormData = {
     name: '',
@@ -11,8 +12,6 @@ const INITIAL_VALUE: ReviewFormData = {
 
 const reducer = (state: ReviewFormData, { type, payload }: Action<number | string>): ReviewFormData => {
     switch (type) {
-        case 'setName':
-            return { ...INITIAL_VALUE, name: String(payload) };
         case 'setText':
             return { ...state, text: String(payload) };
         case 'setRating':
@@ -24,19 +23,11 @@ const reducer = (state: ReviewFormData, { type, payload }: Action<number | strin
 
 export const ReviewForm = ({ onReviewSent }: { onReviewSent: (review: ReviewFormData) => void }) => {
     const [form, dispatch] = useReducer(reducer, INITIAL_VALUE);
+    const user = useContext(UserContext);
 
     return (
         <div className={styles.form}>
-            <label htmlFor="name">
-                Name:
-                <input
-                    className={styles.field}
-                    id="name"
-                    type="text"
-                    value={form.name}
-                    onChange={(event) => dispatch({ type: 'setName', payload: event.target.value })}
-                />
-            </label>
+            <span className={styles['form__user-name']}>{user?.name}:</span>
             <label htmlFor="text">
                 Text:
                 <input
@@ -59,7 +50,7 @@ export const ReviewForm = ({ onReviewSent }: { onReviewSent: (review: ReviewForm
                     onChange={(event) => dispatch({ type: 'setRating', payload: event.target.value })}
                 />
             </label>
-            <Button onClick={() => onReviewSent(form)}>Отправить</Button>
+            <Button onClick={() => onReviewSent({ ...form, name: user?.name || '' })}>Отправить</Button>
         </div>
     );
 };
