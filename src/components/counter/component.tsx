@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Button } from '../button/component';
 import styles from './styles.module.scss';
+import { Size } from '../../constants/size';
 
 export const Counter = ({ minValue, maxValue }: { minValue?: number; maxValue?: number }) => {
     const [value, setValue] = useState(0);
@@ -8,6 +9,7 @@ export const Counter = ({ minValue, maxValue }: { minValue?: number; maxValue?: 
     return (
         <div className={styles.counter}>
             <Button
+                size={Size.s}
                 disabled={minValue !== undefined && value <= minValue}
                 onClick={() => {
                     if (minValue === undefined) {
@@ -23,6 +25,7 @@ export const Counter = ({ minValue, maxValue }: { minValue?: number; maxValue?: 
             </Button>
             {value}
             <Button
+                size={Size.s}
                 disabled={maxValue !== undefined && value >= maxValue}
                 onClick={() => {
                     if (maxValue === undefined) {
