@@ -10,13 +10,16 @@ const INITIAL_VALUE: ReviewFormData = {
 };
 
 const reducer = (state: ReviewFormData, { type, payload }: Action<number | string>): ReviewFormData => {
-    const reducerMap: Map<string, ReviewFormData> = new Map([
-        ['setName', { ...INITIAL_VALUE, name: String(payload) }],
-        ['setText', { ...state, text: String(payload) }],
-        ['setRating', { ...state, rating: Number(payload) }]
-    ]);
-
-    return reducerMap.get(type) ?? state;
+    switch (type) {
+        case 'setName':
+            return { ...INITIAL_VALUE, name: String(payload) };
+        case 'setText':
+            return { ...state, text: String(payload) };
+        case 'setRating':
+            return { ...state, rating: Number(payload) };
+        default:
+            return state;
+    }
 };
 
 export const ReviewForm = ({ onReviewSent }: { onReviewSent: (review: ReviewFormData) => void }) => {
