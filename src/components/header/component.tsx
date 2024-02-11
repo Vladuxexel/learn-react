@@ -10,23 +10,23 @@ const fakeUser: User = {
     email: 'yavasily@mail.ru'
 };
 
-export const Header = ({ title, onUserLogin }: { title: string; onUserLogin: (user: User | null) => void }) => {
-    const user = useContext(UserContext);
+export const Header = ({ title }: { title: string }) => {
+    const { contextUser, setContextUser } = useContext(UserContext);
 
-    const setFakeUser = (data: User | null) => onUserLogin(data);
+    const setFakeUser = (data: User | null) => setContextUser(data);
 
     return (
         <header className={styles.header}>
             <h1 className={styles.header__title}>{title}</h1>
             <div className={styles['header__user-data']}>
-                {!user && (
+                {!contextUser && (
                     <Button size={Size.l} onClick={() => setFakeUser(fakeUser)}>
                         Login
                     </Button>
                 )}
-                {user && (
+                {contextUser && (
                     <div className={styles['header__user-logout-data']}>
-                        <span className={styles['header__user-name']}>{user.name}</span>
+                        <span className={styles['header__user-name']}>{contextUser.name}</span>
                         <Button onClick={() => setFakeUser(null)}>Logout</Button>
                     </div>
                 )}

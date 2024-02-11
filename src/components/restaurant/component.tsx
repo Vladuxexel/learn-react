@@ -8,14 +8,14 @@ import { useContext } from 'react';
 import { UserContext } from '../../contexts/user-context';
 
 export const Restaurant = ({ restaurant, className }: { restaurant: TRestaurant; className: string }) => {
-    const user = useContext(UserContext);
+    const { contextUser } = useContext(UserContext);
 
     return (
         <div className={classNames(styles.restaurant, className)}>
             <h1>{restaurant.name}</h1>
             <Menu menu={restaurant.menu} />
             <Rating reviews={restaurant.reviews} />
-            {user && <ReviewForm onReviewSent={(review) => console.log(review)} />}
+            {contextUser && <ReviewForm onReviewSent={(review) => console.log(review)} />}
         </div>
     );
 };

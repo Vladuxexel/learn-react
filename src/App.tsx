@@ -12,8 +12,8 @@ export const App = () => {
     const [contextUser, setContextUser] = useState<User | null>(null);
 
     return (
-        <UserContext.Provider value={contextUser}>
-            <Layout onUserLogin={setContextUser}>
+        <UserContext.Provider value={{ contextUser, setContextUser }}>
+            <Layout>
                 <Filter
                     items={data}
                     displayKey="name"

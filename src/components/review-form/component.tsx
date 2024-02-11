@@ -23,11 +23,11 @@ const reducer = (state: ReviewFormData, { type, payload }: Action<number | strin
 
 export const ReviewForm = ({ onReviewSent }: { onReviewSent: (review: ReviewFormData) => void }) => {
     const [form, dispatch] = useReducer(reducer, INITIAL_VALUE);
-    const user = useContext(UserContext);
+    const { contextUser } = useContext(UserContext);
 
     return (
         <div className={styles.form}>
-            <span className={styles['form__user-name']}>{user?.name}:</span>
+            <span className={styles['form__user-name']}>{contextUser?.name}:</span>
             <label htmlFor="text">
                 Text:
                 <input
@@ -50,7 +50,7 @@ export const ReviewForm = ({ onReviewSent }: { onReviewSent: (review: ReviewForm
                     onChange={(event) => dispatch({ type: 'setRating', payload: event.target.value })}
                 />
             </label>
-            <Button onClick={() => onReviewSent({ ...form, name: user?.name || '' })}>Отправить</Button>
+            <Button onClick={() => onReviewSent({ ...form, name: contextUser?.name || '' })}>Отправить</Button>
         </div>
     );
 };
