@@ -1,12 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { normalizedDishes } from '../../../constants/normalized-mock';
-
-interface NormalizedDish {
-    id: string;
-    name: string;
-    price: number;
-    ingredients: string[];
-}
+import { NormalizedDish } from '@models';
 
 export const dishSlice = createSlice({
     name: 'dish',

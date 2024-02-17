@@ -1,12 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { normalizedReviews } from '../../../constants/normalized-mock';
-
-interface NormalizedReview {
-    id: string;
-    userId: string;
-    text: string;
-    rating: number;
-}
+import { NormalizedReview } from '@models';
 
 export const reviewSlice = createSlice({
     name: 'review',
