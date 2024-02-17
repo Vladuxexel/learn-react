@@ -7,3 +7,5 @@ import { userSlice } from './entities/user';
 export const store = configureStore({
     reducer: combineSlices(dishSlice, restaurantSlice, reviewSlice, userSlice)
 });
+
+export type RootState = ReturnType<typeof store.getState>;

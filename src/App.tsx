@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { Layout } from './components/layout/component';
-import { restaurants as data } from './constants/mock';
 import { Filter } from './components/filters/component';
-import { Restaurant as TRestaurant, User } from '@models';
-import { RestaurantsContainer } from './components/restaurants-container/component';
+import { User } from '@models';
+import { RestaurantContainer } from './components/restaurant-container/component';
 import styles from './styles/app.styles.module.scss';
 import { UserContext } from './contexts/user-context';
 import { Provider } from 'react-redux';
 import { store } from './redux';
+import { normalizedRestaurants } from './constants/normalized-mock';
 
 export const App = () => {
-    const [restaurant, setRestaurant] = useState<TRestaurant | undefined>();
+    const [restaurantId, setRestaurantId] = useState<string>(normalizedRestaurants[0].id);
     const [contextUser, setContextUser] = useState<User | null>(null);
 
     return (
@@ -18,16 +18,14 @@ export const App = () => {
             <UserContext.Provider value={{ contextUser, setContextUser }}>
                 <Layout>
                     <Filter
-                        items={data}
+                        items={normalizedRestaurants}
                         displayKey="name"
                         selectKey="id"
-                        onSelected={(id) => {
-                            const selectedItem = data.find((restaurant) => restaurant.id === id);
-                            setRestaurant(selectedItem);
-                        }}
+                        initiallySelected={normalizedRestaurants[0].id}
+                        onSelected={setRestaurantId}
                         className={styles['restaurants-filter']}
                     />
-                    <RestaurantsContainer content={restaurant ?? data} className={styles['restaurants-container']} />
+                    <RestaurantContainer restaurantId={restaurantId} className={styles['restaurants-container']} />
                 </Layout>
             </UserContext.Provider>
         </Provider>
