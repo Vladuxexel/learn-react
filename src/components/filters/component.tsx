@@ -8,15 +8,17 @@ export const Filter = <T, K extends keyof T>({
     displayKey,
     selectKey,
     className,
+    initiallySelected = '',
     onSelected
 }: {
     items: T[];
     displayKey: K;
     selectKey: K;
     className: string;
+    initiallySelected?: T[K] | '';
     onSelected: (value: T[K] | '') => void;
 }) => {
-    const [selectedItemKey, setSelectedItemKey] = useState<T[K] | ''>('');
+    const [selectedItemKey, setSelectedItemKey] = useState<T[K] | ''>(initiallySelected);
 
     return (
         <div className={classNames(styles.filter, className)}>
@@ -30,13 +32,6 @@ export const Filter = <T, K extends keyof T>({
                     {item[displayKey]?.toString()}
                 </Button>
             ))}
-            <Button
-                onClick={() => {
-                    setSelectedItemKey('');
-                    onSelected('');
-                }}>
-                X
-            </Button>
         </div>
     );
 };

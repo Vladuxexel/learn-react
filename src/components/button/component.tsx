@@ -13,17 +13,19 @@ export const Button = ({
     children,
     onClick,
     disabled,
-    size = Size.m
+    size = Size.m,
+    className
 }: {
     children: ReactNode;
     onClick?: MouseEventHandler<HTMLButtonElement>;
     disabled?: boolean;
     size?: string;
+    className?: string;
 }) => {
     return (
         <button
             disabled={disabled}
-            className={classNames(styles.button, SizeClass[size] || SizeClass[Size.m])}
+            className={classNames(className, styles.button, SizeClass[size] || SizeClass[Size.m])}
             onClick={onClick}>
             {children}
         </button>

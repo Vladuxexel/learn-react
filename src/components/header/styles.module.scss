@@ -11,23 +11,3 @@
     margin: auto;
     text-align: center;
 }
-
-.header__user-data {
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: 0 2rem;
-}
-
-.header__user-logout-data {
-    display: flex;
-    gap: 1em;
-}
-
-.header__user-name {
-    color: #fff;
-    font-size: 1.5rem;
-}

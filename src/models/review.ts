@@ -4,3 +4,10 @@ export interface Review {
     text: string;
     rating: number;
 }
+
+export interface NormalizedReview {
+    id: string;
+    userId: string;
+    text: string;
+    rating: number;
+}

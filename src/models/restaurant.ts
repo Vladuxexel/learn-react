@@ -6,3 +6,10 @@ export interface Restaurant {
     menu: Dish[];
     reviews: Review[];
 }
+
+export interface NormalizedRestaurant {
+    id: string;
+    name: string;
+    menu: string[];
+    reviews: string[];
+}

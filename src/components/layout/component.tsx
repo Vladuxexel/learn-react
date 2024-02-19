@@ -9,6 +9,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
             <Header title="Restaurants App" />
             <section className={styles.layout__container}>{children}</section>
             <Footer />
+            <div id="modal-container" />
         </div>
     );
 };
