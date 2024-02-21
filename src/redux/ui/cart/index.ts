@@ -16,11 +16,12 @@ export const cartSlice = createSlice({
         }
     },
     selectors: {
-        selectDishAmountById: (state: Record<string, number>, dishId) => {
-            return state[dishId] || 0;
-        }
+        selectDishAmountById: (state: Record<string, number>, dishId) => state[dishId] || 0,
+        selectAllDishesAmount: (state: Record<string, number>) =>
+            Object.values(state).reduce((acc, count) => acc + count, 0),
+        selectAllDishes: (state: Record<string, number>) => Object.keys(state)
     }
 });
 
-export const { selectDishAmountById } = cartSlice.selectors;
+export const { selectDishAmountById, selectAllDishesAmount, selectAllDishes } = cartSlice.selectors;
 export const { increment, decrement } = cartSlice.actions;

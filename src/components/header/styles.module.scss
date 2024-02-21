@@ -11,3 +11,13 @@
     margin: auto;
     text-align: center;
 }
+
+.header__interactions-block {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    display: flex;
+    gap: 2rem;
+    padding: 0 1rem;
+}

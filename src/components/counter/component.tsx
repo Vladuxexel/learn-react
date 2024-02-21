@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../button/component';
 import styles from './styles.module.scss';
 import { Size } from '../../constants/size';
@@ -15,6 +15,12 @@ export const Counter = ({
     onChange: (value: number, type: 'increment' | 'decrement') => void;
 }) => {
     const [value, setValue] = useState(initialValue ?? 0);
+
+    useEffect(() => {
+        if (initialValue !== undefined) {
+            setValue(initialValue);
+        }
+    }, [initialValue]);
 
     return (
         <div className={styles.counter}>
