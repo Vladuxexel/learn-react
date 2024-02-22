@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../button/component';
 import styles from './styles.module.scss';
 import classNames from 'classnames';
@@ -19,6 +19,12 @@ export const Filter = <T, K extends keyof T>({
     onSelected: (value: T[K] | '') => void;
 }) => {
     const [selectedItemKey, setSelectedItemKey] = useState<T[K] | ''>(initiallySelected);
+
+    useEffect(() => {
+        if (initiallySelected !== undefined) {
+            setSelectedItemKey(initiallySelected);
+        }
+    }, [initiallySelected]);
 
     return (
         <div className={classNames(styles.filter, className)}>

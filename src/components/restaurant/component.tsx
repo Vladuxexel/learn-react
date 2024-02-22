@@ -13,6 +13,10 @@ export const Restaurant = ({ id, className }: { id: string; className: string })
     const { contextUser } = useContext(UserContext);
     const restaurant = useSelector((state: RootState) => selectRestaurantById(state, id));
 
+    if (!restaurant) {
+        return null;
+    }
+
     return (
         <div className={classNames(styles.restaurant, className)}>
             <h1>{restaurant.name}</h1>
