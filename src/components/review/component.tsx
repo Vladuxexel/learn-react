@@ -7,6 +7,10 @@ import { selectReviewById } from '../../redux/entities/review/selectors';
 export const Review = ({ id }: { id: string }) => {
     const review = useSelector((state: RootState) => selectReviewById(state, id));
 
+    if (!review) {
+        return null;
+    }
+
     return (
         <div className={styles.review}>
             <span>

@@ -10,6 +10,10 @@ export const Dish = ({ id }: { id: string }) => {
     const dishesCount = useSelector((state: RootState) => selectDishAmountById(state, id));
     const dispatch = useDispatch();
 
+    if (!dish) {
+        return null;
+    }
+
     return (
         <div className={styles['dish']}>
             <span>
