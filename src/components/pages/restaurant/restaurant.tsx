@@ -10,6 +10,8 @@ import { selectIsLoading } from '../../../redux/ui/request';
 import { getUsers } from '../../../redux/entities/user/thunks/get-users';
 
 export const RestaurantPage = () => {
+    return <div>Test</div>;
+
     const [requestIds, setRequestIds] = useState<string[]>([]);
     const isLoading = useSelector((state: RootState) =>
         requestIds.some((requestId) => requestId && selectIsLoading(state, requestId))
