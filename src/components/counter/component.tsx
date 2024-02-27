@@ -1,10 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '../button/component';
 import styles from './styles.module.scss';
 import { Size } from '../../constants/size';
 
-export const Counter = ({ minValue, maxValue }: { minValue?: number; maxValue?: number }) => {
-    const [value, setValue] = useState(0);
+export const Counter = ({
+    minValue,
+    maxValue,
+    initialValue,
+    onChange
+}: {
+    minValue?: number;
+    maxValue?: number;
+    initialValue?: number;
+    onChange: (value: number, type: 'increment' | 'decrement') => void;
+}) => {
+    const [value, setValue] = useState(initialValue ?? 0);
+
+    useEffect(() => {
+        if (initialValue !== undefined) {
+            setValue(initialValue);
+        }
+    }, [initialValue]);
 
     return (
         <div className={styles.counter}>
@@ -12,13 +28,16 @@ export const Counter = ({ minValue, maxValue }: { minValue?: number; maxValue?: 
                 size={Size.s}
                 disabled={minValue !== undefined && value <= minValue}
                 onClick={() => {
+                    const newValue = value - 1;
                     if (minValue === undefined) {
-                        setValue(value - 1);
+                        setValue(newValue);
+                        onChange(newValue, 'decrement');
                         return;
                     }
 
                     if (value > minValue) {
-                        setValue(value - 1);
+                        setValue(newValue);
+                        onChange(newValue, 'decrement');
                     }
                 }}>
                 -
@@ -28,13 +47,16 @@ export const Counter = ({ minValue, maxValue }: { minValue?: number; maxValue?: 
                 size={Size.s}
                 disabled={maxValue !== undefined && value >= maxValue}
                 onClick={() => {
+                    const newValue = value + 1;
                     if (maxValue === undefined) {
-                        setValue(value + 1);
+                        setValue(newValue);
+                        onChange(newValue, 'increment');
                         return;
                     }
 
                     if (value < maxValue) {
-                        setValue(value + 1);
+                        setValue(newValue);
+                        onChange(newValue, 'increment');
                     }
                 }}>
                 +

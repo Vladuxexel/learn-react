@@ -16,6 +16,8 @@
     width: fit-content;
     background-color: #fff;
     padding: 2.5rem;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 .modal__close-button {
