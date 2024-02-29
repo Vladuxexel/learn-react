@@ -47,6 +47,13 @@ export const api = createApi({
                 method: 'POST',
                 body: review
             })
+        }),
+        updateReview: builder.mutation<void, { reviewId: string; review: ReviewFormData }>({
+            query: ({ reviewId, review }) => ({
+                url: `review/${reviewId}`,
+                method: 'PATCH',
+                body: review
+            })
         })
     })
 });
@@ -58,5 +65,6 @@ export const {
     useGetRestaurantDishesQuery,
     useGetDishByIdQuery,
     useGetRestaurantReviewsQuery,
-    useCreateReviewMutation
+    useCreateReviewMutation,
+    useUpdateReviewMutation
 } = api;

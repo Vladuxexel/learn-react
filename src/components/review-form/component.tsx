@@ -25,12 +25,14 @@ const reducer = (state: ReviewFormData, { type, payload }: Action<number | strin
 
 export const ReviewForm = ({
     onReviewSent,
-    isLoading
+    isLoading,
+    initialValue
 }: {
     onReviewSent: (review: ReviewFormData) => void;
     isLoading?: boolean;
+    initialValue?: ReviewFormData;
 }) => {
-    const [form, dispatch] = useReducer(reducer, INITIAL_VALUE);
+    const [form, dispatch] = useReducer(reducer, initialValue ?? INITIAL_VALUE);
     const { contextUser } = useContext(UserContext);
 
     return (
