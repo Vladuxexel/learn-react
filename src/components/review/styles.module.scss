@@ -1,6 +1,22 @@
 .review {
-    border-bottom: 1px solid;
+    display: flex;
+    width: fit-content;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.review__data {
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    border-bottom: 1px solid;
+}
+
+.review__editing-mode {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.review__edit-button {
+    height: 1rem;
 }
