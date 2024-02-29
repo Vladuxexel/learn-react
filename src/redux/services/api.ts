@@ -3,6 +3,7 @@ import { NormalizedRestaurant } from '../../models/restaurant';
 import { NormalizedUser } from '../../models/user';
 import { NormalizedDish } from '../../models/dish';
 import { NormalizedReview } from '../../models/review';
+import { ReviewFormData } from '../../models/review-form-data';
 
 export const api = createApi({
     reducerPath: 'api',
@@ -14,7 +15,7 @@ export const api = createApi({
             })
         }),
         getRestaurant: builder.query<NormalizedRestaurant, string>({
-            query: (restaurantId: string) => ({
+            query: (restaurantId) => ({
                 url: `restaurant/${restaurantId}`
             })
         }),
@@ -24,20 +25,27 @@ export const api = createApi({
             })
         }),
         getRestaurantDishes: builder.query<NormalizedDish[], string>({
-            query: (restaurantId: string) => ({
+            query: (restaurantId) => ({
                 url: 'dishes',
                 params: { restaurantId }
             })
         }),
         getDishById: builder.query<NormalizedDish, string>({
-            query: (dishId: string) => ({
+            query: (dishId) => ({
                 url: `dish/${dishId}`
             })
         }),
         getRestaurantReviews: builder.query<NormalizedReview[], string>({
-            query: (restaurantId: string) => ({
+            query: (restaurantId) => ({
                 url: 'reviews',
                 params: { restaurantId }
+            })
+        }),
+        createReview: builder.mutation<void, { restaurantId: string; review: ReviewFormData }>({
+            query: ({ restaurantId, review }) => ({
+                url: `review/${restaurantId}`,
+                method: 'POST',
+                body: review
             })
         })
     })
@@ -49,5 +57,6 @@ export const {
     useGetUsersQuery,
     useGetRestaurantDishesQuery,
     useGetDishByIdQuery,
-    useGetRestaurantReviewsQuery
+    useGetRestaurantReviewsQuery,
+    useCreateReviewMutation
 } = api;

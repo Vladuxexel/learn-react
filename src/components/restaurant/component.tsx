@@ -5,12 +5,13 @@ import classNames from 'classnames';
 import { ReviewForm } from '../review-form/component';
 import { useContext } from 'react';
 import { UserContext } from '../../contexts/user-context';
-import { useGetRestaurantQuery, useGetRestaurantReviewsQuery } from '../../redux/services/api';
+import { useCreateReviewMutation, useGetRestaurantQuery, useGetRestaurantReviewsQuery } from '../../redux/services/api';
 
 export const Restaurant = ({ id, className }: { id: string; className: string }) => {
     const { contextUser } = useContext(UserContext);
     const { data: restaurant } = useGetRestaurantQuery(id);
-    const { data: reviews } = useGetRestaurantReviewsQuery(id);
+    const { data: reviews, isFetching: areReviewsFetching, refetch } = useGetRestaurantReviewsQuery(id);
+    const [createReview, { isLoading: isReviewSending }] = useCreateReviewMutation();
 
     if (!restaurant || !reviews) {
         return <span>Loading...</span>;
@@ -21,7 +22,15 @@ export const Restaurant = ({ id, className }: { id: string; className: string })
             <h1>{restaurant.name}</h1>
             <Menu dishIds={restaurant.menu} />
             <Rating reviews={reviews} />
-            {contextUser && <ReviewForm onReviewSent={(review) => console.log(review)} />}
+            {contextUser && (
+                <ReviewForm
+                    isLoading={isReviewSending || areReviewsFetching}
+                    onReviewSent={async (review) => {
+                        await createReview({ restaurantId: id, review });
+                        refetch();
+                    }}
+                />
+            )}
         </div>
     );
 };
