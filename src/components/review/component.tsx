@@ -1,20 +1,18 @@
 import styles from './styles.module.scss';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../redux';
-import { UserName } from '../user-name/component';
-import { selectReviewById } from '../../redux/entities/review/selectors';
+import { NormalizedReview } from '../../models/review';
+import { useGetUsersQuery } from '../../redux/services/api';
 
-export const Review = ({ id }: { id: string }) => {
-    const review = useSelector((state: RootState) => selectReviewById(state, id));
+export const Review = ({ review }: { review: NormalizedReview }) => {
+    const { data: users } = useGetUsersQuery();
 
     if (!review) {
-        return null;
+        return <span>Loading...</span>;
     }
 
     return (
         <div className={styles.review}>
             <span>
-                <UserName id={review.userId} />: {review.rating}*
+                {users?.find((user) => user.id === review.userId)?.name}: {review.rating}*
             </span>
             <span>{review.text}</span>
         </div>

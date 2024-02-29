@@ -1,14 +1,15 @@
+import { NormalizedReview } from '../../models/review';
 import { Review } from '../review/component';
 import styles from './styles.module.scss';
 
-export const Rating = ({ reviewIds }: { reviewIds: string[] }) => {
+export const Rating = ({ reviews }: { reviews: NormalizedReview[] }) => {
     return (
         <div className={styles.rating}>
             <h3>Reviews:</h3>
             <ul>
-                {reviewIds.map((id) => (
+                {reviews.map((review) => (
                     <li>
-                        <Review id={id} />
+                        <Review review={review} />
                     </li>
                 ))}
             </ul>

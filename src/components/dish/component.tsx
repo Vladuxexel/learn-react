@@ -2,16 +2,16 @@ import styles from './styles.module.scss';
 import { Counter } from '../counter/component';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../redux';
-import { selectDishById } from '../../redux/entities/dish/selectors';
 import { decrement, increment, selectDishAmountById } from '../../redux/ui/cart';
+import { useGetDishByIdQuery } from '../../redux/services/api';
 
 export const Dish = ({ id }: { id: string }) => {
-    const dish = useSelector((state: RootState) => selectDishById(state, id));
     const dishesCount = useSelector((state: RootState) => selectDishAmountById(state, id));
+    const { isLoading, data: dish } = useGetDishByIdQuery(id);
     const dispatch = useDispatch();
 
-    if (!dish) {
-        return null;
+    if (isLoading || !dish) {
+        return <span>Loading...</span>;
     }
 
     return (
